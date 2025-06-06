@@ -1,0 +1,4 @@
+*terraform*
+secrets.tfvars
+
+!terraform.tfvars
