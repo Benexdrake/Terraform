@@ -15,6 +15,5 @@ variable "container_name" {
 }
 
 variable "key" {
-  sensitive = true
   type = string
 }
