@@ -1,4 +1,4 @@
 *terraform*
 secrets.tfvars
-
+errored.tfstate
 !terraform.tfvars

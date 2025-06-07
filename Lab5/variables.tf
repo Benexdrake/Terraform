@@ -29,3 +29,7 @@ variable "key" {
 variable "subscription_id" {
   type = string
 }
+
+variable "base_address_space" {
+  type = string
+}
