@@ -1,0 +1,9 @@
+*terraform*
+secrets.tfvars
+errored.tfstate
+!terraform.tfvars
+
+.ssh
+acr_token
+acr.sh
+backend_config.tfvars

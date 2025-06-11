@@ -1,0 +1,2 @@
+cd VMs
+./tf.sh $*

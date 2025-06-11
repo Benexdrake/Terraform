@@ -1,0 +1,2 @@
+cd Network
+./tf.sh $*
