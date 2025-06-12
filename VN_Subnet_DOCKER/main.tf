@@ -45,7 +45,7 @@ resource "azurerm_container_app_environment" "main" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.main.id
 
   infrastructure_subnet_id     = azurerm_subnet.container_app.id
-  internal_load_balancer_enabled = true
+  internal_load_balancer_enabled = false // true for private access
   
   workload_profile {
     name               = "general-apps"

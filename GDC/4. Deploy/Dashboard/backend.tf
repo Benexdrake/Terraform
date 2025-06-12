@@ -3,7 +3,7 @@ terraform {
    resource_group_name  = var.resource_group_name
    storage_account_name = var.storage_account_name
    container_name       = var.container_name
-   key                  = "gamedevsconnect.vm.tfstate"
+   key                  = "gamedevsconnect.dashboard.tfstate"
   }
 }
 

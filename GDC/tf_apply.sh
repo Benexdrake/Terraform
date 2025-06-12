@@ -10,6 +10,10 @@ cd ../3.\ SQL_Server_Public/
 echo ">>>>> Creating SQL Server..."
 ./tf.sh apply -auto-approve
 
-cd ../4.\ Deploy/
-echo ">>>>> Creating VMS and Deploy..."
+cd ../4.\ Deploy/APIs
+echo ">>>>> Creating Container and Deploy..."
+./tf.sh apply -auto-approve
+
+cd ../Dashboard
+echo ">>>>> Creating Dashboard and Deploy..."
 ./tf.sh apply -auto-approve

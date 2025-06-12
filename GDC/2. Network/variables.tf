@@ -29,7 +29,3 @@ variable "base_address_space" {
 variable "private_key_path" {
   type = string
 }
-
-variable "subnets" {
-  type = map(string)
-}

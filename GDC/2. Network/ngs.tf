@@ -15,6 +15,18 @@ resource "azurerm_network_security_group" "public_nsg" {
     source_address_prefix       = "*"
     destination_address_prefix  = "*"
   }
+
+  security_rule {
+  name                       = "AllowOutboundAll"
+  priority                   = 100
+  direction                  = "Outbound"
+  access                     = "Allow"
+  protocol                   = "*"
+  source_port_range          = "*"
+  destination_port_range     = "*"
+  source_address_prefix      = "*"
+  destination_address_prefix = "*"
+}
 }
 
 resource "azurerm_network_security_group" "private_nsg" {
@@ -86,8 +98,18 @@ resource "azurerm_subnet_network_security_group_association" "public_nsg_subnet"
   network_security_group_id = azurerm_network_security_group.public_nsg.id
 }
 
+resource "azurerm_subnet_network_security_group_association" "public_container_nsg_subnet" {
+  subnet_id                 = azurerm_subnet.public_container.id
+  network_security_group_id = azurerm_network_security_group.public_nsg.id
+}
+
 resource "azurerm_subnet_network_security_group_association" "private_nsg_subnet" {
   subnet_id                 = azurerm_subnet.private.id
+  network_security_group_id = azurerm_network_security_group.private_nsg.id
+}
+
+resource "azurerm_subnet_network_security_group_association" "private_container_nsg_subnet" {
+  subnet_id                 = azurerm_subnet.private_container.id
   network_security_group_id = azurerm_network_security_group.private_nsg.id
 }
 

@@ -30,24 +30,8 @@ variable "private_key_path" {
   type = string
 }
 
-variable "vm_config" {
+variable "dashboard" {
   type = object({
-    size = string
-    os_disk = object({
-      caching = string
-      storage_account_type = string
-    })
-    source_image_reference = object({
-      publisher = string
-      offer = string
-      sku = string
-      version = string
-    })
-  })
-}
-
-variable "vms" {
-  type = map( object({
     name = string
     interface = string
     image = object({
@@ -61,6 +45,16 @@ variable "vms" {
     admin_ssh = object({
       username = string
     })
+    size = string
+    os_disk = object({
+      caching = string
+      storage_account_type = string
+    })
+    source_image_reference = object({
+      publisher = string
+      offer = string
+      sku = string
+      version = string
+    })
   })
-  )
 }
