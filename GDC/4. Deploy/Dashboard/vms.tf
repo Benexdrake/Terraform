@@ -1,15 +1,15 @@
 resource "azurerm_linux_virtual_machine" "dashboard" {
+  depends_on = [ tls_private_key.vm,  local_file.public_key]
   name                  = "vm-dashboard" // with ping vm-alpha or beta u can access without knowing ip, great for a Gateway
   resource_group_name   = data.azurerm_resource_group.main.name
   location              = data.azurerm_resource_group.main.location
   size                  = var.dashboard.size
   admin_username        = var.dashboard.admin_username
-  network_interface_ids = [data.azurerm_network_interface.public_dashboard.id]
-  
+  network_interface_ids = [data.azurerm_network_interface.public_dashboard.id]  
 
   admin_ssh_key {
     username   = var.dashboard.admin_ssh.username
-    public_key = file("${var.private_key_path}.pub")
+    public_key = tls_private_key.vm.public_key_openssh
   }
 
   os_disk {
@@ -29,6 +29,8 @@ resource "azurerm_linux_virtual_machine" "dashboard" {
       port_from=var.dashboard.image.port.from,
       port_to=var.dashboard.image.port.to
     }))
+
+  tags = var.tags
 }
 
 resource "null_resource" "setup_dashboard" {

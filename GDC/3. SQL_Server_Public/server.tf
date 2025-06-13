@@ -6,6 +6,7 @@ resource "azurerm_mssql_server" "main" {
   administrator_login          = var.administrator_login
   administrator_login_password = var.administrator_login_password
   public_network_access_enabled = true
+  tags = var.tags
 }
 
 resource "azurerm_mssql_firewall_rule" "allow_all" {

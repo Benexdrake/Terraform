@@ -22,9 +22,11 @@ resource "azurerm_subnet" "public_container" {
     delegation {
     name = "delegation"
     service_delegation {
+      # name = "Microsoft.ContainerInstance/containerGroups"
       name = "Microsoft.App/environments"
+  
       actions = [
-        "Microsoft.Network/virtualNetworks/subnets/action"
+        "Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"
       ]
     }
   }
@@ -39,9 +41,10 @@ resource "azurerm_subnet" "private_container" {
     delegation {
     name = "delegation"
     service_delegation {
+      # name = "Microsoft.ContainerInstance/containerGroups"
       name = "Microsoft.App/environments"
       actions = [
-        "Microsoft.Network/virtualNetworks/subnets/action"
+        "Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"
       ]
     }
   }

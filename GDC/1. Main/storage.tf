@@ -4,6 +4,7 @@ resource "azurerm_storage_account" "main" {
   location                 = data.azurerm_resource_group.main.location
   account_tier             = "Standard"
   account_replication_type = "GRS"
+  tags = var.tags
 }
 
 resource "azurerm_storage_container" "tfstate" {

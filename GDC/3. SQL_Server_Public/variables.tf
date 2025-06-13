@@ -29,3 +29,12 @@ variable "administrator_login" {
 variable "administrator_login_password" {
   type = string
 }
+
+variable "tags" {
+  type = map(string)
+  default = {
+      source = "terraform",
+      plattform = "gdc",
+      part = "sql"
+    }
+}

@@ -14,6 +14,7 @@ resource "azurerm_container_app_environment" "public" {
     minimum_count           = 1
     maximum_count           = 3
   }
+  tags = var.tags
 }
 
 resource "azurerm_container_app_environment" "private" {
@@ -24,7 +25,7 @@ resource "azurerm_container_app_environment" "private" {
   log_analytics_workspace_id        = data.azurerm_log_analytics_workspace.main.id
 
   infrastructure_subnet_id          = azurerm_subnet.private_container.id
-  internal_load_balancer_enabled    = true
+  internal_load_balancer_enabled    = false
   
   workload_profile {
     name                    = "general-apps"
@@ -32,4 +33,5 @@ resource "azurerm_container_app_environment" "private" {
     minimum_count           = 1
     maximum_count           = 3
   }
+  tags = var.tags
 }

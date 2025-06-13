@@ -17,16 +17,17 @@ resource "azurerm_network_security_group" "public_nsg" {
   }
 
   security_rule {
-  name                       = "AllowOutboundAll"
-  priority                   = 100
-  direction                  = "Outbound"
-  access                     = "Allow"
-  protocol                   = "*"
-  source_port_range          = "*"
-  destination_port_range     = "*"
-  source_address_prefix      = "*"
-  destination_address_prefix = "*"
-}
+    name                       = "AllowOutboundAll"
+    priority                   = 100
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+  tags = var.tags
 }
 
 resource "azurerm_network_security_group" "private_nsg" {
@@ -42,7 +43,7 @@ resource "azurerm_network_security_group" "private_nsg" {
     protocol                   = "*"
     source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "VirtualNetwork"
+    source_address_prefix      = "10.0.0.0/16"
     destination_address_prefix = "*"
   }
 
@@ -70,7 +71,7 @@ resource "azurerm_network_security_group" "private_nsg" {
     destination_address_prefix = "*"
   }
 
-
+  tags = var.tags
 }
 
 resource "azurerm_network_security_group" "private_sql_nsg" {
@@ -79,16 +80,17 @@ resource "azurerm_network_security_group" "private_sql_nsg" {
   resource_group_name = data.azurerm_resource_group.main.name
 
   security_rule {
-  name                       = "Allow-PrivateEndpoint"
-  priority                   = 110
-  direction                  = "Inbound"
-  access                     = "Allow"
-  protocol                   = "*"
-  source_port_range          = "*"
-  destination_port_range     = "*"
-  source_address_prefix      = "10.0.0.0/24"
-  destination_address_prefix = "*"
-}
+    name                       = "Allow-PrivateEndpoint"
+    priority                   = 110
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "10.0.0.0/24"
+    destination_address_prefix = "*"
+  }
+  tags = var.tags
 }
 
 

@@ -21,3 +21,12 @@ variable "container_name" {
 variable "subscription_id" {
   type = string
 }
+
+variable "tags" {
+  type = map(string)
+  default = {
+      source = "terraform",
+      plattform = "gdc",
+      part = "main"
+    }
+}

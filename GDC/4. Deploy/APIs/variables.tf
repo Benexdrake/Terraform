@@ -21,3 +21,12 @@ variable "storage_account_name" {
 variable "container_name" {
   type = string
 }
+
+variable "tags" {
+  type = map(string)
+  default = {
+      source = "terraform",
+      plattform = "gdc",
+      part = "apis"
+    }
+}

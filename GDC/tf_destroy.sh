@@ -1,8 +1,12 @@
-cd ./4.\ Deploy/
-echo ">>>>> Destroy VMS and Deploy..."
+cd ./4.\ Deploy/Dashboard
+echo ">>>>> Destroy Dashboard and Deploy..."
 ./tf.sh destroy -auto-approve
 
-cd ../3.\ SQL_Server_Public/
+cd ../APIs
+echo ">>>>> Destroy APIs and Deploy..."
+./tf.sh destroy -auto-approve
+
+cd ../../3.\ SQL_Server_Public/
 echo ">>>>> Destroy SQL Server..."
 ./tf.sh destroy -auto-approve
 

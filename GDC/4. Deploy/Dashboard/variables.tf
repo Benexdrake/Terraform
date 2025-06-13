@@ -30,6 +30,15 @@ variable "private_key_path" {
   type = string
 }
 
+variable "tags" {
+  type = map(string)
+  default = {
+      source = "terraform",
+      plattform = "gdc",
+      part = "dashboard"
+    }
+}
+
 variable "dashboard" {
   type = object({
     name = string

@@ -6,6 +6,7 @@ resource "azurerm_mssql_server" "main" {
   administrator_login          = var.administrator_login
   administrator_login_password = var.administrator_login_password
   public_network_access_enabled = false
+  tags = var.tags
 }
 
 // Private Subnet Access
@@ -27,4 +28,5 @@ resource "azurerm_private_endpoint" "sql_private_endpoint" {
     name                 = "sql-dns-zone-group"
     private_dns_zone_ids = [azurerm_private_dns_zone.sql.id]
   }
+  tags = var.tags
 }
