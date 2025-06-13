@@ -13,15 +13,15 @@ resource "azurerm_network_interface" "public" {
   tags = var.tags   
 }
 
-resource "azurerm_network_interface" "private" {
-  name                = "nic-${var.application_name}-${var.environment_name}-private"
-  location            = data.azurerm_resource_group.main.location
-  resource_group_name = data.azurerm_resource_group.main.name
+# resource "azurerm_network_interface" "private" {
+#   name                = "nic-${var.application_name}-${var.environment_name}-private"
+#   location            = data.azurerm_resource_group.main.location
+#   resource_group_name = data.azurerm_resource_group.main.name
 
-  ip_configuration {
-    name                          = "privat"
-    subnet_id                     = azurerm_subnet.private.id
-    private_ip_address_allocation = "Dynamic"
-  }
-  tags = var.tags   
-}
+#   ip_configuration {
+#     name                          = "privat"
+#     subnet_id                     = azurerm_subnet.private.id
+#     private_ip_address_allocation = "Dynamic"
+#   }
+#   tags = var.tags   
+# }

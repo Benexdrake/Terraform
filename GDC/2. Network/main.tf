@@ -7,6 +7,6 @@ resource "random_id" "suffix" {
 }
 
 data "azurerm_log_analytics_workspace" "main" {
-  name = "${var.resource_group_name}-log-analytics"
+  name = "${var.application_name}-log-analytics"
   resource_group_name = data.azurerm_resource_group.main.name
 }
