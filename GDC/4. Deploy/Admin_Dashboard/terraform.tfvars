@@ -7,7 +7,7 @@ subnets = {
 }
 
 dashboard = {
-    name      = "dashboard",
+    name      = "admindashboard",
     interface = "public_dashboard",
     image = {
       link = "benexdrake012/gamedevsconnect_frontend:latest",

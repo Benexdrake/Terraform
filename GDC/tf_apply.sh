@@ -14,6 +14,6 @@ cd ../4.\ Deploy/APIs
 echo ">>>>> Creating Container and Deploy..."
 ./tf.sh apply -auto-approve
 
-# cd ../Dashboard
-# echo ">>>>> Creating Dashboard and Deploy..."
-# ./tf.sh apply -auto-approve
+cd ../Admin_Dashboard
+echo ">>>>> Creating Dashboard and Deploy..."
+./tf.sh apply -auto-approve

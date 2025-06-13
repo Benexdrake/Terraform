@@ -72,3 +72,36 @@ resource "azurerm_container_app" "gateway" {
   }
   tags = var.tags
 }
+
+resource "azurerm_container_app" "frontend" {
+  depends_on = [ azurerm_container_app.gateway ]
+  name                         = "api-frontend-container"
+  resource_group_name          = data.azurerm_resource_group.main.name
+  container_app_environment_id = data.azurerm_container_app_environment.public.id
+  revision_mode = "Single"
+
+  ingress {
+    external_enabled = true
+    target_port      = 8080
+    transport        = "auto"
+    traffic_weight {
+      percentage = 100
+      revision_suffix = "initial"
+    }
+  }
+
+  template {
+    container {
+      name   = "frontend"
+      image  = "benexdrake012/gamedevsconnect_backend_api_frontend"
+      cpu    = 0.5
+      memory = "1.0Gi"
+
+      env {
+       name = "API_URL" 
+       value = "https://${azurerm_container_app.gateway.latest_revision_fqdn}"
+      }
+    }
+  }
+  tags = var.tags
+}

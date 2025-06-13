@@ -1,6 +1,6 @@
-resource "azurerm_linux_virtual_machine" "dashboard" {
+resource "azurerm_linux_virtual_machine" "admin_dashboard" {
   depends_on = [ tls_private_key.vm,  local_file.public_key]
-  name                  = "vm-dashboard" // with ping vm-alpha or beta u can access without knowing ip, great for a Gateway
+  name                  = "vm-admin-dashboard"
   resource_group_name   = data.azurerm_resource_group.main.name
   location              = data.azurerm_resource_group.main.location
   size                  = var.dashboard.size
