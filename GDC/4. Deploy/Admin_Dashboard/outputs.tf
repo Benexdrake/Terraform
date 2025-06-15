@@ -13,5 +13,5 @@
 # }
 
 output "vm_dashboard_ip" {
-  value = azurerm_linux_virtual_machine.dashboard.public_ip_address
+  value = azurerm_linux_virtual_machine.admin_dashboard.public_ip_address
 }

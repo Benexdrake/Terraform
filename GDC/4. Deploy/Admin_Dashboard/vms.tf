@@ -24,29 +24,29 @@ resource "azurerm_linux_virtual_machine" "admin_dashboard" {
     version   = var.dashboard.source_image_reference.version
   }
 
-  user_data = base64encode(templatefile("customdata.tftpl", {
-      image=var.dashboard.image.link
-      port_from=var.dashboard.image.port.from,
-      port_to=var.dashboard.image.port.to
-    }))
+  # user_data = base64encode(templatefile("customdata.tftpl", {
+  #     image=var.dashboard.image.link
+  #     port_from=var.dashboard.image.port.from,
+  #     port_to=var.dashboard.image.port.to
+  #   }))
 
   tags = var.tags
 }
 
-resource "null_resource" "setup_dashboard" {
-  depends_on = [azurerm_linux_virtual_machine.dashboard]
+# resource "null_resource" "setup_dashboard" {
+#   depends_on = [azurerm_linux_virtual_machine.admin_dashboard]
 
-  connection {
-    type        = "ssh"
-    host        = data.azurerm_public_ip.dashboard.ip_address
-    user        = var.dashboard.admin_ssh.username
-    private_key = file(var.private_key_path)
-  }
+#   connection {
+#     type        = "ssh"
+#     host        = data.azurerm_public_ip.dashboard.ip_address
+#     user        = var.dashboard.admin_ssh.username
+#     private_key = file(var.private_key_path)
+#   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "while [ ! -f /var/log/setup_done.log ]; do echo 'Warte auf Setup...'; systemctl status docker | tail -n 2; sleep 10; done",
-      "echo 'Setup abgeschlossen.'"
-    ]
-  }
-}
+#   provisioner "remote-exec" {
+#     inline = [
+#       "while [ ! -f /var/log/setup_done.log ]; do echo 'Warte auf Setup...'; systemctl status docker | tail -n 2; sleep 10; done",
+#       "echo 'Setup abgeschlossen.'"
+#     ]
+#   }
+# }

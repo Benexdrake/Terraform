@@ -5,23 +5,10 @@ resource "azurerm_network_interface" "public" {
   resource_group_name = data.azurerm_resource_group.main.name
 
   ip_configuration {
-    name                          = "public_dashboard"
+    name                          = "public_admin_dashboard"
     subnet_id                     = azurerm_subnet.public.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.public_dashboard.id
   }
   tags = var.tags   
 }
-
-# resource "azurerm_network_interface" "private" {
-#   name                = "nic-${var.application_name}-${var.environment_name}-private"
-#   location            = data.azurerm_resource_group.main.location
-#   resource_group_name = data.azurerm_resource_group.main.name
-
-#   ip_configuration {
-#     name                          = "privat"
-#     subnet_id                     = azurerm_subnet.private.id
-#     private_ip_address_allocation = "Dynamic"
-#   }
-#   tags = var.tags   
-# }

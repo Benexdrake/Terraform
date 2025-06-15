@@ -75,7 +75,7 @@ resource "azurerm_container_app" "gateway" {
 
 resource "azurerm_container_app" "frontend" {
   depends_on = [ azurerm_container_app.gateway ]
-  name                         = "api-frontend-container"
+  name                         = "frontend-container"
   resource_group_name          = data.azurerm_resource_group.main.name
   container_app_environment_id = data.azurerm_container_app_environment.public.id
   revision_mode = "Single"
@@ -93,7 +93,7 @@ resource "azurerm_container_app" "frontend" {
   template {
     container {
       name   = "frontend"
-      image  = "benexdrake012/gamedevsconnect_backend_api_frontend"
+      image  = "benexdrake012/gamedevsconnect_frontend"
       cpu    = 0.5
       memory = "1.0Gi"
 

@@ -30,49 +30,6 @@ resource "azurerm_network_security_group" "public_nsg" {
   tags = var.tags
 }
 
-resource "azurerm_network_security_group" "private_nsg" {
-  name                = "ngs-${var.application_name}-${var.environment_name}-private"
-  location            = data.azurerm_resource_group.main.location
-  resource_group_name = data.azurerm_resource_group.main.name
-
-  security_rule {
-    name                       = "Allow-From-VNet"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "10.0.0.0/16"
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
-    name                       = "Deny-All-Inbound"
-    priority                   = 200
-    direction                  = "Inbound"
-    access                     = "Deny"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
-    name                       = "Allow-All-Outbound"
-    priority                   = 100
-    direction                  = "Outbound"
-    access                     = "Allow"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
-
-  tags = var.tags
-}
 
 resource "azurerm_network_security_group" "private_sql_nsg" {
   name                = "ngs-${var.application_name}-${var.environment_name}-sql"
@@ -103,16 +60,6 @@ resource "azurerm_subnet_network_security_group_association" "public_nsg_subnet"
 resource "azurerm_subnet_network_security_group_association" "public_container_nsg_subnet" {
   subnet_id                 = azurerm_subnet.public_container.id
   network_security_group_id = azurerm_network_security_group.public_nsg.id
-}
-
-resource "azurerm_subnet_network_security_group_association" "private_nsg_subnet" {
-  subnet_id                 = azurerm_subnet.private.id
-  network_security_group_id = azurerm_network_security_group.private_nsg.id
-}
-
-resource "azurerm_subnet_network_security_group_association" "private_container_nsg_subnet" {
-  subnet_id                 = azurerm_subnet.private_container.id
-  network_security_group_id = azurerm_network_security_group.private_nsg.id
 }
 
 resource "azurerm_subnet_network_security_group_association" "sql_nsg_subnet" {

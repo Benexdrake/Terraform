@@ -2,7 +2,7 @@ locals {
   containers = {
     "azure" = {
         name = "azure",
-        container_app_environment_id = data.azurerm_container_app_environment.private.id,
+        container_app_environment_id = data.azurerm_container_app_environment.public.id,
         target_port = 8080,
         template = {
             name = "apiazure",
@@ -13,7 +13,7 @@ locals {
     },
     "comment" = {
         name = "comment",
-        container_app_environment_id = data.azurerm_container_app_environment.private.id,
+        container_app_environment_id = data.azurerm_container_app_environment.public.id,
         target_port = 8080,
         template = {
             name = "apicomment",
@@ -24,7 +24,7 @@ locals {
     },
     "file" = {
         name = "file",
-        container_app_environment_id = data.azurerm_container_app_environment.private.id,
+        container_app_environment_id = data.azurerm_container_app_environment.public.id,
         target_port = 8080,
         template = {
             name = "apifile",
@@ -35,7 +35,7 @@ locals {
     },
     "notification" = {
         name = "notification",
-        container_app_environment_id = data.azurerm_container_app_environment.private.id,
+        container_app_environment_id = data.azurerm_container_app_environment.public.id,
         target_port = 8080,
         template = {
             name = "apinotification",
@@ -46,7 +46,7 @@ locals {
     },
     "profile" = {
         name = "profile",
-        container_app_environment_id = data.azurerm_container_app_environment.private.id,
+        container_app_environment_id = data.azurerm_container_app_environment.public.id,
         target_port = 8080,
         template = {
             name = "apiprofile",
@@ -57,7 +57,7 @@ locals {
     },
     "project" = {
         name = "project",
-        container_app_environment_id = data.azurerm_container_app_environment.private.id,
+        container_app_environment_id = data.azurerm_container_app_environment.public.id,
         target_port = 8080,
         template = {
             name = "apiproject",
@@ -68,7 +68,7 @@ locals {
     },
     "request" = {
         name = "request",
-        container_app_environment_id = data.azurerm_container_app_environment.private.id,
+        container_app_environment_id = data.azurerm_container_app_environment.public.id,
         target_port = 8080,
         template = {
             name = "apirequest",
@@ -79,7 +79,7 @@ locals {
     },
     "tag" = {
         name = "tag",
-        container_app_environment_id = data.azurerm_container_app_environment.private.id,
+        container_app_environment_id = data.azurerm_container_app_environment.public.id,
         target_port = 8080,
         template = {
             name = "apitag",
@@ -90,7 +90,7 @@ locals {
     },
     "user" = {
         name = "user",
-        container_app_environment_id = data.azurerm_container_app_environment.private.id,
+        container_app_environment_id = data.azurerm_container_app_environment.public.id,
         target_port = 8080,
         template = {
             name = "apiuser",

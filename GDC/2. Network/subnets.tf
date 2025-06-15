@@ -5,13 +5,6 @@ resource "azurerm_subnet" "public" {
   address_prefixes      = [local.public_address_space]
 }
 
-resource "azurerm_subnet" "private" {
-  name                 = "subnet-private"
-  resource_group_name  = data.azurerm_resource_group.main.name
-  virtual_network_name = azurerm_virtual_network.main.name
-  address_prefixes     = [local.private_address_space]
-}
-
 // Container Subnets
 resource "azurerm_subnet" "public_container" {
   name                  = "subnet-public-container"
@@ -25,24 +18,6 @@ resource "azurerm_subnet" "public_container" {
       # name = "Microsoft.ContainerInstance/containerGroups"
       name = "Microsoft.App/environments"
   
-      actions = [
-        "Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"
-      ]
-    }
-  }
-}
-
-resource "azurerm_subnet" "private_container" {
-  name                 = "subnet-private-container"
-  resource_group_name  = data.azurerm_resource_group.main.name
-  virtual_network_name = azurerm_virtual_network.main.name
-  address_prefixes     = [local.private_container_address_space]
-
-    delegation {
-    name = "delegation"
-    service_delegation {
-      # name = "Microsoft.ContainerInstance/containerGroups"
-      name = "Microsoft.App/environments"
       actions = [
         "Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"
       ]
